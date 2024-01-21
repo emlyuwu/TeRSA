@@ -3,6 +3,8 @@ from Crypto.Util import number
 import math
 import os
 
+if not os.path.exists("keys"):
+    os.makedirs("keys")
 
 encoded = ""
 
