@@ -146,5 +146,9 @@ keyname.grid(row=0, column=1, pady=7)
 genkey = customtkinter.CTkLabel(master=keygen_tab, text="All generated keys\n are written to\n /keys/ with the\n"
                                                         " given name.", width=75, )
 genkey.grid(row=1, column=1, pady=7, sticky='n')
+vkeylabel = customtkinter.CTkLabel(master=keygen_tab, text="Private key:\n(dont send this one)", width=130, )
+vkeylabel.grid(row=0, column=0, pady=7)
+bkeylabel = customtkinter.CTkLabel(master=keygen_tab, text="Public key:\n(do send this one)", width=130, )
+bkeylabel.grid(row=0, column=2, pady=7)
 
 app.mainloop()
