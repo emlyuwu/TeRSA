@@ -6,8 +6,6 @@ import os
 if not os.path.exists("keys"):
     os.makedirs("keys")
 
-encoded = ""
-
 
 def generate_keys():
     global publick
@@ -29,13 +27,6 @@ def generate_keys():
         file.close()
 
 
-def write_keys():
-    global pubkey
-    global privkey
-    pubkey = f"{keymod}, {publickey}"
-    privkey = f"{keymod}, {privatekey}"
-
-
 def keygen_run():
     global wkeyname
     wkeyname = keyname.get()
@@ -44,12 +35,11 @@ def keygen_run():
         return 1
     else:
         generate_keys()
-        write_keys()
         print("Complete. Written to .key files.")
         publickey.delete(0.0, 'end')
-        publickey.insert("end", pubkey)
+        publickey.insert("end", f"{keymod}, {publick}")
         privatekey.delete(0.0, 'end')
-        privatekey.insert("end", privkey)
+        privatekey.insert("end", f"{keymod}, {privatek}")
 
 
 def submit_e():
@@ -97,7 +87,7 @@ customtkinter.set_appearance_mode("dark")
 app = customtkinter.CTk()
 app.title("TeRSA")
 app.geometry("830x400")
-tabview = customtkinter.CTkTabview(app, width=800, height=400)
+tabview = customtkinter.CTkTabview(app, width=800, height=410)
 tabview.pack(pady=10)
 encode_tab = tabview.add('Encode')
 decode_tab = tabview.add('Decode')
@@ -107,7 +97,7 @@ to_encode = customtkinter.CTkEntry(encode_tab, placeholder_text="Message to enco
 to_encode.grid(row=0, column=0, sticky="w", padx=5, pady=7)
 submit = customtkinter.CTkButton(master=encode_tab, command=submit_e, text="Encode", width=100)
 submit.grid(row=0, column=1, padx=5)
-ekeylocation = customtkinter.CTkEntry(encode_tab, placeholder_text="Key name? (prefix to -public.key)", height=30,
+ekeylocation = customtkinter.CTkEntry(encode_tab, placeholder_text="Key name? (prefix to -public.key in /keys/ subfolder)", height=30,
                                       width=800)
 ekeylocation.grid(row=1, column=0, padx=5, pady=7, sticky="ew", columnspan=2)
 Eoutput = customtkinter.CTkTextbox(master=encode_tab, width=800, pady=5, height=230)
@@ -120,7 +110,7 @@ submit.grid(row=0, column=1, pady=7, sticky='nw')
 encodeinfo = customtkinter.CTkLabel(master=decode_tab, text="Enter RSA encoded\nmessage or file\nlocation here.",
                                     width=100)
 encodeinfo.grid(row=0, column=1, pady=7)
-keylocation = customtkinter.CTkEntry(decode_tab, placeholder_text="Key name? (prefix to -private.key)", height=30,
+keylocation = customtkinter.CTkEntry(decode_tab, placeholder_text="Key name? (prefix to -private.key in /keys/ subfolder)", height=30,
                                      width=800)
 keylocation.grid(row=1, column=0, pady=7, padx=5, sticky="ew", columnspan=2)
 Doutput = customtkinter.CTkTextbox(decode_tab, height=30, width=800)
