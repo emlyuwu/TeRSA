@@ -1,6 +1,6 @@
 
 # TeRSA multitool
-This is a tool for using RSA encryption. It can generate keys, decode RSA encoded messages (given the correct private key), and encode messages with a given public key. It depends on simpletkinter for the gui and Pycryptodome for the large prime number generation.
+This is a tool for using RSA encryption. It can generate keys, decode RSA encoded messages (given the correct private key), and encode messages with a given public key. It depends on customtkinter for the gui and Pycryptodome for the large prime number generation.
 
 
 ## Screenshots
