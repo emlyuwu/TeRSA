@@ -29,6 +29,15 @@ def generate_keys():
         file.close()
 
 
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
+
 def keygen_run():
     global wkeyname
     wkeyname = keyname.get()
@@ -97,7 +106,7 @@ customtkinter.set_appearance_mode("dark")
 app = customtkinter.CTk()
 app.title("TeRSA")
 app.geometry("833x400")
-app.iconbitmap("cat.ico")
+app.iconbitmap(resource_path("cat.ico"))
 helpfont = customtkinter.CTkFont(size=15)
 tabview = customtkinter.CTkTabview(app, width=800, height=410)
 tabview.grid(row=0, column=0, pady=10)
@@ -171,7 +180,7 @@ help1.insert("0.0", "TeRSA uses"
                     "Once they have encoded it, enter the encoded message \n(should look like gibberish numbers) and the "
                     "original key name into the decode tab.")
 help1.configure(state="disabled")
-helpimage = customtkinter.CTkImage(light_image=Image.open("lightchart.png"), dark_image=Image.open("darkchart.png"),
+helpimage = customtkinter.CTkImage(dark_image=Image.open(resource_path("darkchart.png")),
                                    size=(320,320))
 imagelabel = customtkinter.CTkLabel(helptab, image=helpimage)
 imagelabel.grid(row=0, column=1)
